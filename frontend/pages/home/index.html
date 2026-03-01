@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coração Peludo</title>
+
+  <link rel="stylesheet" href="home.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">🐾 Coração Peludo</div>
+
+  <nav id="navMenu">
+    <ul>
+      <li><a href="#">Início</a></li>
+      <li><a href="#">Fórum</a></li>
+      <li><a href="#">Informativos</a></li>
+    </ul>
+  </nav>
+
+  <div class="auth-buttons">
+    <button class="btn-login" onclick="goToLogin()">Login</button>
+    <button class="btn-register" onclick="goToRegister()">Cadastrar</button>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Adote amor, transforme vidas.</h1>
+    <p>
+      Conectamos animais que precisam de um lar com pessoas prontas para oferecer carinho e cuidado.
+    </p>
+    <div class="hero-buttons">
+      <button class="btn-primary">Quero Adotar</button>
+      <button class="btn-secondary">Quero Doar</button>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8" alt="Cachorro feliz">
+  </div>
+</section>
+
+<section class="about">
+  <h2>Como Funciona?</h2>
+  <div class="about-cards">
+    <div class="card">
+      <h3>1️⃣ Encontre um pet</h3>
+      <p>Busque por animais disponíveis e conheça suas histórias.</p>
+    </div>
+    <div class="card">
+      <h3>2️⃣ Solicite adoção</h3>
+      <p>Entre em contato com o doador ou ONG com segurança.</p>
+    </div>
+    <div class="card">
+      <h3>3️⃣ Transforme vidas</h3>
+      <p>Finalize o processo e receba seu novo melhor amigo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="highlights">
+  <h2>Animais em Destaque</h2>
+  <div class="pet-container" id="petContainer"></div>
+</section>
+
+<section class="news">
+  <h2>Dicas & Informativos</h2>
+  <div class="news-cards">
+    <div class="news-card">
+      <h3>Responsabilidade na Adoção</h3>
+      <p>Adotar é um compromisso de longo prazo. Conheça os cuidados essenciais.</p>
+    </div>
+    <div class="news-card">
+      <h3>Cuidados Básicos</h3>
+      <p>Vacinação, alimentação e carinho são essenciais.</p>
+    </div>
+    <div class="news-card">
+      <h3>Adote, Não Compre</h3>
+      <p>Milhares de animais aguardam um lar cheio de amor.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Coração Peludo - Todos os direitos reservados.</p>
+</footer>
+
+<script src="home.js"></script>
+</body>
+</html>

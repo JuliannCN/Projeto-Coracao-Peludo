@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Informações Adicionais</title>
+  <link rel="stylesheet" href="auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-card">
+
+    <h2>Informações Complementares</h2>
+    <p>Precisamos de mais alguns dados para sua segurança.</p>
+
+    <form id="step2Form", onsubmit="registerUser(event)">
+
+      <!-- CAMPOS TUTOR -->
+      <div id="tutorFields">
+
+        <div class="input-group">
+          <label>CPF</label>
+          <input type="text" id="cpf">
+        </div>
+
+        <div class="input-group">
+          <label>Data de Nascimento</label>
+          <input type="date" id="dataNascimento">
+        </div>
+
+      </div>
+
+      <!-- CAMPOS ONG -->
+      <div id="ongFields">
+
+        <div class="input-group">
+          <label>Nome da ONG/Abrigo</label>
+          <input type="text" id="nomeOng">
+        </div>
+
+        <div class="input-group">
+          <label>CNPJ</label>
+          <input type="text" id="cnpj">
+        </div>
+
+        <div class="input-group">
+          <label>Descrição da ONG</label>
+          <input type="text" id="descricaoOng">
+        </div>
+
+      </div>
+
+      <!-- CAMPOS COMUNS -->
+      <div class="input-group">
+        <label>CEP</label>
+        <input type="text" id="cep" required>
+      </div>
+
+      <div class="input-group">
+        <label>Endereço</label>
+        <input type="text" id="endereco" required>
+      </div>
+
+      <div class="input-group">
+        <label>Cidade</label>
+        <input type="text" id="cidade" required>
+      </div>
+
+      <div class="input-group">
+        <label>Estado</label>
+        <input type="text" id="estado" required>
+      </div>
+
+      <div class="input-group">
+        <label>Telefone</label>
+        <input type="text" id="telefone" required>
+      </div>
+
+      <button type="submit" class="btn-primary">Finalizar Cadastro</button>
+
+    </form>
+
+    <div class="auth-footer">
+      <a href="register.html">← Voltar</a>
+    </div>
+
+  </div>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>
