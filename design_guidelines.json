@@ -1,0 +1,93 @@
+{
+  "theme": "light",
+  "archetype": "3 (Pastel & Soft) with Neo-Brutalist contrast",
+  "colors": {
+    "background_primary": "#FAFAFA",
+    "background_secondary": "#F3EFFF",
+    "primary_cta": "#5A3E85",
+    "primary_cta_hover": "#452C69",
+    "accent": "#FFC499",
+    "text_main": "#1C1724",
+    "text_muted": "#564F62",
+    "border_subtle": "#E4DDF1",
+    "border_hard": "#1C1724"
+  },
+  "typography": {
+    "heading_font": "Outfit",
+    "body_font": "Figtree",
+    "h1": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none",
+    "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight",
+    "h3": "text-xl sm:text-2xl font-semibold",
+    "body": "text-base leading-relaxed font-medium",
+    "overline": "text-xs font-bold uppercase tracking-[0.2em]"
+  },
+  "layout_spacing": {
+    "container_padding": "p-8 md:p-12 lg:p-16",
+    "bento_gap": "gap-6 md:gap-8",
+    "card_padding": "p-6",
+    "border_radius": "rounded-3xl",
+    "inner_radius": "rounded-2xl"
+  },
+  "surfaces": {
+    "glass_header": "backdrop-blur-xl bg-white/70 border-b border-black/5 shadow-sm z-50",
+    "pet_card": "bg-white border border-[#E4DDF1] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-3xl overflow-hidden flex flex-col",
+    "dashboard_panel": "bg-white border border-[#E4DDF1] rounded-2xl p-6",
+    "forum_post": "bg-[#FAFAFA] border border-[#E4DDF1] rounded-2xl p-6 hover:border-[#5A3E85] transition-colors"
+  },
+  "motion_interactions": {
+    "hover_lift": "transition-transform duration-300 hover:-translate-y-1",
+    "focus_state": "focus:outline-none focus:ring-2 focus:ring-[#5A3E85] focus:ring-offset-2",
+    "button_active": "active:scale-95 transition-transform"
+  },
+  "components": {
+    "button_primary": "bg-[#5A3E85] text-white font-bold py-3 px-6 rounded-full hover:bg-[#452C69] hover:text-white transition-colors flex items-center justify-center gap-2",
+    "button_secondary": "bg-[#F3EFFF] text-[#5A3E85] font-bold py-3 px-6 rounded-full hover:bg-[#E4DDF1] hover:text-[#452C69] transition-colors",
+    "badge": "bg-[#FFC499] text-[#1C1724] text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"
+  },
+  "icon_strategy": {
+    "library": "lucide-react",
+    "style": "stroke-width: 2.5, clean and geometric"
+  },
+  "media": {
+    "hero_image": {
+      "url": "https://images.unsplash.com/photo-1753685725777-0d1bf5796b3a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwxfHxwZXJzb24lMjBodWdnaW5nJTIwZG9nfGVufDB8fHx8MTc3NTYwNTQ2Mnww&ixlib=rb-4.1.0&q=85",
+      "description": "Woman taking a selfie hugging a dog - use for the main hero section of the home page"
+    },
+    "abstract_background": {
+      "url": "https://images.unsplash.com/photo-1557672172-298e090bd0f1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2MzR8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGJhY2tncm91bmR8ZW58MHx8fHB1cnBsZXwxNzc1NjA1NDYyfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Soft purple abstract background - use as section background or decorative overlay behind main content"
+    },
+    "pets": [
+      {
+        "url": "https://images.unsplash.com/photo-1744824838728-59f825fc7da1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwyfHxjdXRlJTIwZG9nJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzc1NjA1NDU2fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Cute dog portrait 1"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1744824838304-d2bbf3a94da7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHw0fHxjdXRlJTIwZG9nJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzc1NjA1NDU2fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Cute dog portrait 2"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1663271639648-62b22481ea8c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwzfHxjdXRlJTIwZG9nJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzc1NjA1NDU2fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Cute dog portrait 3"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1702914954859-f037fc75b760?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwxfHxjdXRlJTIwY2F0JTIwcG9ydHJhaXR8ZW58MHx8fHwxNzc1NjA1NDU2fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Cute cat portrait 1"
+      },
+      {
+        "url": "https://images.pexels.com/photos/1571076/pexels-photo-1571076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Cute cat portrait 2"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Use Outfit for all headings. Ensure it is imported via Google Fonts. Use Figtree for body text.",
+    "Implement the 'Corações Peludos' logo purely as styled text or using an SVG icon + text next to it (lucide-react PawPrint).",
+    "For the Hero Section: Do NOT use a basic centered layout. Use a Bento grid (Tetris grid). Left column: text-5xl Outfit heading, accent colored subtext, primary CTA. Right column: the hero image overlapping with a small floating stats card (e.g. '120+ Pets Adotados').",
+    "Pet List Section: Use a 3-column grid on desktop. Pet cards must have large images (h-64 object-cover), inner padding for text, soft borders, and rounded-3xl edges. The CTA 'Ver detalhes' should be a secondary button style.",
+    "Dashboard/Forum: Switch from the airy marketing layout to the denser 'Control Room' grid. Maintain the soft purple/white color scheme, but reduce padding to p-6 inside cards. Use Shadcn components for forms, tabs, and tables.",
+    "Navigation: A sticky glassmorphism header is mandatory. Ensure text contrast against any background. Provide a clear 'Entrar / Cadastrar' CTA on desktop.",
+    "Add 'data-testid' attributes to all interactive elements, buttons, and form fields.",
+    "Never use generic placeholder images. Use the provided Unsplash/Pexels URLs for pet cards and avatars."
+  ]
+}
