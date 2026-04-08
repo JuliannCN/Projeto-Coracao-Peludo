@@ -199,7 +199,7 @@ export default function PetsList() {
             variant="outline"
             onClick={() => setShowFilters(!showFilters)}
             className="border-[#E4DDF1] text-[#5A3E85] hover:bg-[#F3EFFF] rounded-full relative"
-            data-testid="toggle-filters"
+            data-testid="toggle-filters-btn"
           >
             <Filter className="w-4 h-4 mr-2" />
             Filtros
