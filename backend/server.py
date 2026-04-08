@@ -5,7 +5,7 @@ ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 from fastapi import FastAPI, APIRouter, HTTPException, Request, Response
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 import os
 import logging
 from typing import Optional
@@ -16,32 +16,30 @@ import jwt
 import requests
 from bson import ObjectId
 
-# JWT Configuration
+# ======================= CONFIG =======================
+
 JWT_ALGORITHM = "HS256"
 
 def get_jwt_secret() -> str:
     return os.environ["JWT_SECRET"]
 
-# JWT Configuration
-JWT_ALGORITHM = "HS256"
+# ======================= PASSWORD =======================
 
-def get_jwt_secret() -> str:
-    return os.environ["JWT_SECRET"]
-
-# Password hashing
 def hash_password(password: str) -> str:
-    salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(password.encode("utf-8"), salt)
-    return hashed.decode("utf-8")
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
+    return bcrypt.checkpw(
+        plain_password.encode("utf-8"),
+        hashed_password.encode("utf-8")
+    )
 
-# JWT Token Management
+# ======================= JWT =======================
+
 def create_access_token(user_id: str, email: str) -> str:
     payload = {
-        "sub": user_id, 
-        "email": email, 
+        "sub": user_id,
+        "email": email,
         "exp": datetime.now(timezone.utc) + timedelta(minutes=60),
         "type": "access"
     }
@@ -49,29 +47,42 @@ def create_access_token(user_id: str, email: str) -> str:
 
 def create_refresh_token(user_id: str) -> str:
     payload = {
-        "sub": user_id, 
-        "exp": datetime.now(timezone.utc) + timedelta(days=7), 
+        "sub": user_id,
+        "exp": datetime.now(timezone.utc) + timedelta(days=7),
         "type": "refresh"
     }
     return jwt.encode(payload, get_jwt_secret(), algorithm=JWT_ALGORITHM)
 
+# ======================= AUTH =======================
+
 async def get_current_user(request: Request) -> dict:
     token = request.cookies.get("access_token")
+
     if not token:
         auth_header = request.headers.get("Authorization", "")
         if auth_header.startswith("Bearer "):
             token = auth_header[7:]
+
     if not token:
         raise HTTPException(status_code=401, detail="Not authenticated")
+
     try:
         payload = jwt.decode(token, get_jwt_secret(), algorithms=[JWT_ALGORITHM])
+
         if payload.get("type") != "access":
             raise HTTPException(status_code=401, detail="Invalid token type")
-        user = await db.users.find_one({"_id": ObjectId(payload["sub"])}, {"password_hash": 0})
+
+        user = await db.users.find_one(
+            {"_id": ObjectId(payload["sub"])},
+            {"password_hash": 0}
+        )
+
         if not user:
             raise HTTPException(status_code=401, detail="User not found")
+
         user["_id"] = str(user["_id"])
         return user
+
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
     except jwt.InvalidTokenError:
@@ -83,32 +94,62 @@ async def get_optional_user(request: Request) -> Optional[dict]:
     except:
         return None
 
-# Create the main app
+# ======================= APP =======================
+
 app = FastAPI(title="Corações Peludos API")
 
-# Create a router with the /api prefix
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ajuste em produção
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 api_router = APIRouter(prefix="/api")
 
-# Configure logging
+# ======================= LOG =======================
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# ======================= GOOGLE AUTH (Emergent) =======================
+# ======================= ROUTES IMPORT =======================
+
+# Exemplo de estrutura:
+# routes/
+# ├── auth_routes.py
+# ├── user_routes.py
+# ├── pet_routes.py
+# ├── forum_routes.py
+
+from Routes import AuthRoute, UserRoute, PetRoute, ForumRoute, AdoptionRoute, FileRoute, MessageRoute, NotificationRoute, RootRoute, StatsRoutes
+
+api_router.include_router(AuthRoute.router, prefix="/auth", tags=["Auth"])
+api_router.include_router(UserRoute.router, prefix="/users", tags=["Users"])
+api_router.include_router(PetRoute.router, prefix="/pets", tags=["Pets"])
+api_router.include_router(ForumRoute.router, prefix="/forum", tags=["Forum"])
+api_router.include_router(AdoptionRoute.router, prefix="/adoption", tags=["Adoption"])
+api_router.include_router(FileRoute.router, prefix="/file", tags=["File"])
+api_router.include_router(MessageRoute.router, prefix="/message", tags=["Message"])
+api_router.include_router(NotificationRoute.router, prefix="/notification", tags=["Notification"])
+api_router.include_router(RootRoute.router, prefix="/root", tags=["Root"])
+api_router.include_router(StatsRoutes.router, prefix="/stats", tags=["Stats"])
+
+# ======================= GOOGLE AUTH =======================
 
 @api_router.post("/auth/google/session")
 async def google_session(request: Request, response: Response):
     body = await request.json()
     session_id = body.get("session_id")
+
     if not session_id:
         raise HTTPException(status_code=400, detail="Missing session_id")
-    
-    # Get session data from Emergent Auth
+
     try:
         resp = requests.get(
-            "https://demobackend.emergentagent.com/auth/v1/env/oauth/session-data",
             headers={"X-Session-ID": session_id},
             timeout=30
         )
@@ -117,18 +158,18 @@ async def google_session(request: Request, response: Response):
     except Exception as e:
         logger.error(f"Google auth error: {e}")
         raise HTTPException(status_code=400, detail="Failed to verify Google session")
-    
+
     email = data.get("email", "").lower()
     name = data.get("name", "")
     picture = data.get("picture")
-    
-    # Find or create user
+
     user = await db.users.find_one({"email": email})
+
     if not user:
         user_doc = {
             "name": name,
             "email": email,
-            "password_hash": None,  # Google users don't have password
+            "password_hash": None,
             "user_type": "user",
             "avatar_url": picture,
             "favorites": [],
@@ -139,18 +180,41 @@ async def google_session(request: Request, response: Response):
         user_id = str(result.inserted_id)
     else:
         user_id = str(user["_id"])
-        # Update avatar if changed
+
         if picture and user.get("avatar_url") != picture:
-            await db.users.update_one({"_id": user["_id"]}, {"$set": {"avatar_url": picture}})
-    
+            await db.users.update_one(
+                {"_id": user["_id"]},
+                {"$set": {"avatar_url": picture}}
+            )
+
     access_token = create_access_token(user_id, email)
     refresh_token = create_refresh_token(user_id)
-    
-    response.set_cookie(key="access_token", value=access_token, httponly=True, secure=True, samesite="none", max_age=3600, path="/")
-    response.set_cookie(key="refresh_token", value=refresh_token, httponly=True, secure=True, samesite="none", max_age=604800, path="/")
-    
-    user_data = await db.users.find_one({"_id": ObjectId(user_id)}, {"password_hash": 0, "_id": 0})
-    
+
+    response.set_cookie(
+        key="access_token",
+        value=access_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        max_age=3600,
+        path="/"
+    )
+
+    response.set_cookie(
+        key="refresh_token",
+        value=refresh_token,
+        httponly=True,
+        secure=True,
+        samesite="none",
+        max_age=604800,
+        path="/"
+    )
+
+    user_data = await db.users.find_one(
+        {"_id": ObjectId(user_id)},
+        {"password_hash": 0, "_id": 0}
+    )
+
     return {
         "id": user_id,
         "name": user_data["name"],
@@ -159,3 +223,13 @@ async def google_session(request: Request, response: Response):
         "avatar_url": user_data.get("avatar_url"),
         "token": access_token
     }
+
+# ======================= HEALTH CHECK =======================
+
+@api_router.get("/")
+async def health_check():
+    return {"status": "API rodando 🚀"}
+
+# ======================= REGISTER ROUTER =======================
+
+app.include_router(api_router)

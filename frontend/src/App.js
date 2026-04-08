@@ -51,8 +51,6 @@ function DashboardRouter() {
 function AppRouter() {
   const location = useLocation();
   
-  // Check for OAuth callback session_id BEFORE rendering routes
-  // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
   if (location.hash?.includes('session_id=')) {
     return <AuthCallback />;
   }

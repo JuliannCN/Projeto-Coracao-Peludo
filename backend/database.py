@@ -1,16 +1,18 @@
+import os
+from dotenv import load_dotenv
 from pymongo import MongoClient
 
-# String de conexão
-MONGO_URI = "mongodb+srv://julianncosta2203_db_user:julianncosta2203_db_user@projetocoracaopeludo.psfemrx.mongodb.net/coracoes_peludos?retryWrites=true&w=majority"
+load_dotenv()
 
-# Criando conexão
+MONGO_URI = os.getenv("MONGO_URI")
+
 client = MongoClient(MONGO_URI)
 
-# Selecionando banco
 db = client["coracoes_peludos"]
 
-# Exemplo de coleção
 users_collection = db["users"]
 pets_collection = db["pets"]
-
-print(client.list_database_names())
+ongs_collection = db["ongs"]
+adocoes_collection = db["adocoes"]
+posts_collection = db["posts"]
+comentarios_collection = db["comentarios"]
