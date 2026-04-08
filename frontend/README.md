@@ -1,70 +1,173 @@
-# Getting Started with Create React App
+# Corações Peludos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Plataforma web para **adoção responsável de animais**, conectando usuários e ONGs, além de oferecer um espaço de **fórum para troca de experiências, dicas e curiosidades**.
 
-## Available Scripts
+> Status do projeto: Em desenvolvimento (não totalmente funcional)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Sobre o Projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+O **Corações Peludos** tem como objetivo facilitar o processo de adoção de animais, promovendo uma conexão mais eficiente entre pessoas interessadas em adotar e organizações responsáveis.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Além disso, o sistema busca criar uma comunidade ativa através de um fórum interativo.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Status Atual
 
-### `npm run build`
+O projeto ainda está em fase de desenvolvimento e pode apresentar:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Funcionalidades incompletas
+* Integrações parciais (Frontend ↔ Backend)
+* Possíveis erros de autenticação e banco de dados
+* Rotas ainda em construção
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+##  Tecnologias Utilizadas
 
-### `npm run eject`
+###  Backend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Python
+* FastAPI
+* MongoDB
+* JWT (Autenticação)
+* Bcrypt (Hash de senha)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+###  Frontend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* HTML / CSS / JavaScript
+* Consumo de API via Fetch
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Como Executar o Projeto
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1. Clone o repositório
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+git clone <url-do-repositorio>
+cd coracoes-peludos
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2. Crie um ambiente virtual
 
-### Analyzing the Bundle Size
+```bash
+python -m venv venv
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Ative o ambiente:
 
-### Making a Progressive Web App
+* Windows:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+venv\Scripts\activate
+```
 
-### Advanced Configuration
+* Linux/Mac:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+source venv/bin/activate
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 3. Instale as dependências
 
-### `npm run build` fails to minify
+```bash
+pip install -r requirements.txt
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+### 4. Configure o arquivo `.env`
+
+Crie um arquivo `.env` na raiz do backend:
+
+```env
+MONGO_URI=sua_string_do_mongo
+JWT_SECRET=sua_chave_secreta
+```
+
+---
+
+### 5. Execute o backend
+
+```bash
+uvicorn server:app --reload
+```
+
+A API estará disponível em:
+
+```
+http://localhost:8000
+```
+
+---
+
+### 6. Execute o frontend
+
+Abra o arquivo:
+
+```
+public/index.html
+```
+
+Ou utilize uma extensão como **Live Server** no VS Code.
+
+---
+
+## 🔐 Funcionalidades (Planejadas / Parciais)
+
+* [x] Estrutura base do backend
+* [x] Conexão com MongoDB
+* [x] Sistema de autenticação (JWT)
+* [ ] Cadastro e login de usuários
+* [ ] Cadastro de pets por ONGs
+* [ ] Sistema de adoção
+* [ ] Fórum com postagens e comentários
+* [ ] Favoritos
+* [ ] Chat entre usuário e ONG
+
+---
+
+## ⚠️ Problemas Conhecidos
+
+* Uso inconsistente entre PyMongo e async/await
+* Configuração de cookies pode falhar em ambiente local
+* Rotas podem não estar totalmente integradas
+* Frontend ainda básico e não totalmente conectado à API
+
+---
+
+## 🚀 Próximos Passos
+
+* Padronizar acesso ao banco (async ou sync)
+* Melhorar estrutura das rotas
+* Criar interface mais moderna (UI/UX)
+* Implementar autenticação completa no frontend
+* Adicionar tratamento de erros mais robusto
+
+---
+
+## 🤝 Contribuição
+
+Este projeto está em desenvolvimento e aberto para melhorias.
+
+Sugestões, correções e ideias são bem-vindas!
+
+---
+
+## 📄 Licença
+
+Este projeto é de uso educacional.
+
+---
+
+## 🧠 Autor
+
+Desenvolvido por Juliann Costa Nascimento, Augusto Mendes Martins e Gustavo Vitor Dos Reis.
+Projeto acadêmico com foco em aprendizado de desenvolvimento web fullstack 🚀
