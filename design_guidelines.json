@@ -79,15 +79,5 @@
         "description": "Cute cat portrait 2"
       }
     ]
-  },
-  "instructions_to_main_agent": [
-    "Use Outfit for all headings. Ensure it is imported via Google Fonts. Use Figtree for body text.",
-    "Implement the 'Corações Peludos' logo purely as styled text or using an SVG icon + text next to it (lucide-react PawPrint).",
-    "For the Hero Section: Do NOT use a basic centered layout. Use a Bento grid (Tetris grid). Left column: text-5xl Outfit heading, accent colored subtext, primary CTA. Right column: the hero image overlapping with a small floating stats card (e.g. '120+ Pets Adotados').",
-    "Pet List Section: Use a 3-column grid on desktop. Pet cards must have large images (h-64 object-cover), inner padding for text, soft borders, and rounded-3xl edges. The CTA 'Ver detalhes' should be a secondary button style.",
-    "Dashboard/Forum: Switch from the airy marketing layout to the denser 'Control Room' grid. Maintain the soft purple/white color scheme, but reduce padding to p-6 inside cards. Use Shadcn components for forms, tabs, and tables.",
-    "Navigation: A sticky glassmorphism header is mandatory. Ensure text contrast against any background. Provide a clear 'Entrar / Cadastrar' CTA on desktop.",
-    "Add 'data-testid' attributes to all interactive elements, buttons, and form fields.",
-    "Never use generic placeholder images. Use the provided Unsplash/Pexels URLs for pet cards and avatars."
-  ]
+  }
 }
